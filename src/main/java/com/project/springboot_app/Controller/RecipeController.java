@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.project.springboot_app.Model.Recipe;
 //import com.project.springboot_app.Model.Recipe;
 import com.project.springboot_app.Model.RecipeDetails;
 import com.project.springboot_app.service.RecipeService;
@@ -61,6 +62,10 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "fullrecipe";
     }
+    @GetMapping("/home1")
+    public String home(){
+      return "home1";
+    }
 
     @GetMapping("/")
     public String home(Model model){
@@ -87,18 +92,6 @@ public class RecipeController {
       model.addAttribute("recipeItems", randomrecipe);
       return "home";
     }
-<<<<<<< HEAD
-
-    // @GetMapping("/search")
-    // public ResponseEntity<List<RecipeDetails>> searchRecipes(@RequestParam String searchText) {
-    //     List<RecipeDetails> foundRecipes = recipeService.searchRecipes(searchText);
-    //     if(!foundRecipes.isEmpty()){
-    //       return ResponseEntity.ok(foundRecipes);
-    //     }else{
-    //       return ResponseEntity.noContent().build();
-    //     }
-    // }
-=======
  @GetMapping("/search")
     public String searchRecipes(@RequestParam( name="query") String query, Model model) {
       System.out.println("heloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
@@ -108,7 +101,6 @@ public class RecipeController {
         model.addAttribute("recipeItems", recipes);
         return "recipelist"; // The name of the HTML template to render
     }
->>>>>>> e0f3730 (update)
    
 
 
@@ -153,11 +145,14 @@ public class RecipeController {
    @RequestParam("name") String recipeName,
    @RequestParam("desc") String recipe_description,
    @RequestParam("prep") String recipe_preparation,
+   @RequestParam("category") String category,
+   @RequestParam("origin") String origin,
+
    Model model){
      // return recipeService.saveRecipe(image, recipe_id, recipe_name, recipe_description,recipe_preparation);
      // RecipeDetails savedRecipe = recipeService.saveRecipe(image, recipe_id,recipe_name, recipe_description, recipe_preparation);
      // System.out.println(recipe_id); 
-      RecipeDetails savedRecipe = recipeService.saveRecipe(image, recipe_id, recipeName, recipe_description, recipe_preparation);
+      RecipeDetails savedRecipe = recipeService.saveRecipe(image, recipe_id, recipeName, recipe_description, recipe_preparation,category,origin);
     System.out.println(recipe_id);
 
    // Add attributes to the model
@@ -221,6 +216,14 @@ public class RecipeController {
 
         return "recipelist";
     }
+    @GetMapping("/category")
+    public String getRecipesByCategory(Model model,String category) {
+        List<RecipeDetails> recipeItems=recipeService.getRecipeByCategory(category);
+       model.addAttribute("recipeItems",recipeItems );
+       
+        return "recipelist";
+    }
+    
    
 
 

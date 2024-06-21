@@ -74,13 +74,8 @@
         <p th:text="${recipe.recipe_description}"></p>
         <p th:text="${recipe.recipe_preparation}" style="white-space: pre-wrap;"></p>
         
-<<<<<<< HEAD
-        <a th:if="${session.is_authenticated}" th:href="@{/deleterecipe/{id}(id=${recipe.recipe_id})}" class = "btn btn-danger m-2">Delete</a>
-        <a th:if="${session.is_authenticated}" th:href="@{/recipe/{id}(id=${recipe.recipe_id})}" class = "btn btn-success">Update</a>
-=======
         <a th:if="${session.is_authenticated}" th:onclick="'confirmDeletion(' + ${recipe.recipe_id} + ')'"th:href="@{/deleterecipe/{id}(id=${recipe.recipe_id})}" class = "btn btn-danger m-2">Delete</a>
         <a th:if="${session.is_authenticated}"  th:href="@{/recipe/{id}(id=${recipe.recipe_id})}" class = "btn btn-success">Update</a>
->>>>>>> e0f3730 (update)
         
     </div>
     </div>

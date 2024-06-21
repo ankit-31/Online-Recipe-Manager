@@ -1,6 +1,8 @@
 package com.project.springboot_app.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 // import org.springframework.data.jpa.repository.Query;
 // import org.springframework.data.repository.query.Param;
@@ -14,18 +16,10 @@ import com.project.springboot_app.Model.RecipeDetails;
 @Repository
 public interface RecipeDetailsRepository extends JpaRepository<RecipeDetails, Integer>{
 
-<<<<<<< HEAD
-    // public List<RecipeDetails> findByRecipeNameContaining(String keywords);
-
-    // @Query("SELECT a FROM recipe_details WHERE"+
-    //         "LOWER(a.recipe_name) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " + 
-    //         "LOWER(a.recipe_preparation) LIKE LOWER(CONCAT('%', :searchText, '%')) OR " + 
-    //         "LOWER(a.recipe_description) LIKE LOWER(CONCAT('%', :searchText, '%'))" )
-    // List<RecipeDetails> findRecipesBySearchText(@Param("searchText") String searchText);
-=======
    List<RecipeDetails>findByRecipeNameContainingIgnoreCase(String query);
+  List<RecipeDetails> findByCategoryContainingIgnoreCase(String veg);
+                                                           //veg is the category we want to search
 
 
  
->>>>>>> e0f3730 (update)
 }

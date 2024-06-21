@@ -24,6 +24,8 @@ public class RecipeDetails {
     private String recipe_preparation;
     @Column(columnDefinition = "LONGTEXT")
     private String image;
+    private String category;
+    private String origin;
     
     // @Override
 	// public String toString() {

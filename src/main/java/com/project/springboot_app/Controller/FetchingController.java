@@ -52,11 +52,7 @@ public class FetchingController {
 
     @GetMapping("/logout")
     public String logout(HttpSession session ,Model model){
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> e0f3730 (update)
    
 
             session.removeAttribute("is_authenticated");
@@ -83,11 +79,7 @@ public class FetchingController {
       model.addAttribute("recipeItems", randomrecipe);
 
       return "home";}
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> e0f3730 (update)
           
     
 
@@ -99,11 +91,7 @@ public class FetchingController {
 @PostMapping("/admin")
 
 public String authenticateUser(@ModelAttribute("loginForm") Recipe loginForm,Model model, HttpSession session) {
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> e0f3730 (update)
 
 
     boolean authenticatedUser = fetchingService.authenticate(loginForm.getId(),loginForm.getUsername(), loginForm.getPassword());

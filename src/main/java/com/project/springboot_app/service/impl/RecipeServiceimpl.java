@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.project.springboot_app.Model.Recipe;
 import com.project.springboot_app.Model.RecipeDetails;
 import com.project.springboot_app.repository.RecipeDetailsRepository;
 //import com.project.springboot_app.repository.RecipeRepository;
@@ -31,7 +32,7 @@ public class RecipeServiceimpl implements RecipeService {
 
     @Override
     public RecipeDetails saveRecipe(MultipartFile image, Integer recipe_id, String recipeName,
-                                    String recipe_description, String recipe_preparation) {
+                                    String recipe_description, String recipe_preparation,String category,String origin) {
         RecipeDetails r = new RecipeDetails();
 
 
@@ -52,6 +53,8 @@ public class RecipeServiceimpl implements RecipeService {
         r.setRecipe_id(recipe_id);
         r.setRecipeName(recipeName);
         r.setRecipe_preparation(recipe_preparation);
+        r.setCategory(category);
+        r.setOrigin(origin);
 
         return recipeDetailsRepository.save(r);
     }
@@ -64,23 +67,10 @@ public class RecipeServiceimpl implements RecipeService {
        recipeDetailsRepository.deleteById(recipe_id);
     }
 
-<<<<<<< HEAD
-    // public List<RecipeDetails> listAll(String keyword){
-    //     if(keyword!= null){
-    //         return recipeDetailsRepository.search(keyword);
-    //     }
-    // }
-
-    // @Override
-    // public List<RecipeDetails> searchRecipes(String searchText){
-    //     return recipeDetailsRepository.findRecipesBySearchText(searchText);
-    // }
-=======
 public List<RecipeDetails> searchRecipes(String query) {
         // Implement the search logic here. For example:
         return recipeDetailsRepository.findByRecipeNameContainingIgnoreCase(query);
     }
->>>>>>> e0f3730 (update)
 
     public RecipeDetails getRecipeById(Integer id) {
         return recipeDetailsRepository.findById(id)
@@ -101,6 +91,10 @@ public List<RecipeDetails> searchRecipes(String query) {
 
         recipeDetailsRepository.save(existingRecipe);
        
+    }
+    @Override
+    public List<RecipeDetails> getRecipeByCategory(String category) {
+    return recipeDetailsRepository.findByCategoryContainingIgnoreCase(category);
     }
   
 
