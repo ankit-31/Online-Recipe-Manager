@@ -42,19 +42,27 @@
                     <label>Preparation</label>
                     <textarea th:field="*{recipe_preparation}" class="form-control" placeholder="Enter Recipe Preparation"></textarea>
                 </div>
-                <div>
-          <select class="form-control mb-4" name="category" id="category" required>
-            <option name="" disabled selected>Select Category</option>
-            <option name="veg">Veg</option>
-            <option name="nonveg">Non-Veg</option>
-        </select>
-    </div>
-       <div>
-        <select class="form-control mb-4" name="origin" id="origin" required>
-            <option value="" disabled selected>Select Origin</option>
-            <option name="nepali">Nepali</option>
-            <option name="foreign">Foreign</option>
-        </select></div>
+               
+            <!-- Recipe Category -->
+            <div class="form-group mb-4">
+                <label for="category">Category</label>
+                
+                <select class="form-control" th:field="*{category}" required>
+                    <option value="veg" th:selected="${category == 'Veg'}">Veg</option>
+                    <option value="nonveg" th:selected="${category == 'Non-Veg'}">Non-Veg</option>
+                </select>
+            </div>
+
+            <!-- Recipe Origin -->
+            <div class="form-group mb-4">
+                <label for="origin">Origin</label>
+                <select class="form-control" th:field="*{origin}" id="origin" required>
+                    <option value="" disabled>Select Origin</option>
+                    <option value="Nepali" th:selected="*{origin} == 'Nepali'">Nepali</option>
+                    <option value="Foreign" th:selected="*{origin} == 'Foreign'">Foreign</option>
+                </select>
+            </div>
+    
                 <div class="form-group">
                     <label>Choose File</label>
                     <input type="file" name="imageFile" class="form-control" />

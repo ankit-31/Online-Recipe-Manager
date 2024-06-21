@@ -27,4 +27,7 @@ public interface RecipeService {
     public RecipeDetails getRecipeById(Integer id);
     public List<RecipeDetails> searchRecipes(String query);
     public List<RecipeDetails>getRecipeByCategory(String category);
+    public List<RecipeDetails>getRecipeByOrigin(String origin);
+
+   
 }

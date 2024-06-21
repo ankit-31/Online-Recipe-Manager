@@ -63,10 +63,30 @@ public class RecipeController {
         return "fullrecipe";
     }
     @GetMapping("/home1")
-    public String home(){
+    public String home1(Model model){
+      List<RecipeDetails> allrecipe=recipeService.getAllRecipe();
+      Random randomRecipe = new Random();
+      
+      List<RecipeDetails> randomrecipe = new ArrayList<>();
+      
+      int i = randomRecipe.nextInt(allrecipe.size());
+      int j = randomRecipe.nextInt(allrecipe.size());
+      while(j == i){
+        j = randomRecipe.nextInt(allrecipe.size());
+      }
+      int k = randomRecipe.nextInt(allrecipe.size());
+      // while(k == i || k == j){
+      //   k = randomRecipe.nextInt(allrecipe.size());
+      // }
+      randomrecipe.add(allrecipe.get(i));
+      randomrecipe.add(allrecipe.get(j));
+      randomrecipe.add(allrecipe.get(k));
+
+      
+      
+      model.addAttribute("recipeItems", randomrecipe);
       return "home1";
     }
-
     @GetMapping("/")
     public String home(Model model){
       List<RecipeDetails> allrecipe=recipeService.getAllRecipe();
@@ -125,6 +145,7 @@ public class RecipeController {
     public String updateRecipe(@PathVariable Integer id,
                                @ModelAttribute RecipeDetails recipeDetails,
                                @RequestParam("imageFile") MultipartFile imageFile,
+                          
                                Model model) throws IOException {
         if (!imageFile.isEmpty()) {
             String base64Image = Base64.getEncoder().encodeToString(imageFile.getBytes());
@@ -171,41 +192,10 @@ public class RecipeController {
     return ResponseEntity.status(HttpStatus.FOUND)
                          .location(location)
                          .body(savedRecipe);
-      // return ResponseEntity.status(HttpStatus.FOUND)
-
-      //       .header("Location", "recipelist")
-      //       .body(savedRecipe);
-            
-   // return ResponseEntity.ok(savedRecipe);
-
+      
 
    }
-//   @PostMapping("/save_recipe")
-// public String saveRecipe(@RequestParam("image") MultipartFile image,
-//                          @RequestParam("id") int recipe_id,
-//                          @RequestParam("name") String recipe_name,
-//                          @RequestParam("desc") String recipe_description,
-//                          @RequestParam("prep") String recipe_preparation,
-//                          Model model) {
-//     // Save the recipe using the service
-//    // RecipeDetails savedRecipe = recipeService.saveRecipe(image, recipe_id, recipe_name, recipe_description, recipe_preparation);
-    
-    
-//     System.out.println(recipe_id);
-    
-   
-//     // model.addAttribute("savedRecipe", savedRecipe);
-    
-//     // // Redirecting to the desired HTML page
-//     // return "listrecipe";
-//     List<RecipeDetails> recipeItems = recipeService.getAllRecipe();
-//     model.addAttribute("recipeItems", recipeItems);
-//   System.out.println("i am here okayyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-//     // Redirecting to the desired HTML page
-//     return "redirect:/recipelist";
 
-// }
-//RequestMapping("/recipelist")
 @GetMapping("/recipelist")
     public String getRecipes(Model model) {
       logger.info("Fetching all recipes");
@@ -217,12 +207,21 @@ public class RecipeController {
         return "recipelist";
     }
     @GetMapping("/category")
-    public String getRecipesByCategory(Model model,String category) {
+    public String getRecipesByCategory(Model model,@RequestParam("type") String category) {
         List<RecipeDetails> recipeItems=recipeService.getRecipeByCategory(category);
        model.addAttribute("recipeItems",recipeItems );
-       
+      
         return "recipelist";
     }
+    @GetMapping("/origin")
+    public String getRecipesByOrigin(Model model,@RequestParam("type") String origin) {
+        List<RecipeDetails> recipeItems=recipeService.getRecipeByOrigin(origin);
+       model.addAttribute("recipeItems",recipeItems );
+      
+        return "recipelist";
+    }
+    
+   
     
    
 

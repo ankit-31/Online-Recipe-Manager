@@ -84,6 +84,8 @@ public List<RecipeDetails> searchRecipes(String query) {
         existingRecipe.setRecipeName(updatedRecipeDetails.getRecipeName());
         existingRecipe.setRecipe_description(updatedRecipeDetails.getRecipe_description());
         existingRecipe.setRecipe_preparation(updatedRecipeDetails.getRecipe_preparation());
+        existingRecipe.setCategory(updatedRecipeDetails.getCategory());
+        existingRecipe.setOrigin(updatedRecipeDetails.getOrigin());
 
         if (updatedRecipeDetails.getImage() != null && !updatedRecipeDetails.getImage().isEmpty()) {
             existingRecipe.setImage(updatedRecipeDetails.getImage());
@@ -94,7 +96,11 @@ public List<RecipeDetails> searchRecipes(String query) {
     }
     @Override
     public List<RecipeDetails> getRecipeByCategory(String category) {
-    return recipeDetailsRepository.findByCategoryContainingIgnoreCase(category);
+    return recipeDetailsRepository.findByCategoryIgnoreCase(category);
+    }
+    @Override
+    public List<RecipeDetails> getRecipeByOrigin(String origin) {
+    return recipeDetailsRepository.findByOriginIgnoreCase(origin);
     }
   
 

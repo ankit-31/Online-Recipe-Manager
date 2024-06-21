@@ -17,8 +17,9 @@ import com.project.springboot_app.Model.RecipeDetails;
 public interface RecipeDetailsRepository extends JpaRepository<RecipeDetails, Integer>{
 
    List<RecipeDetails>findByRecipeNameContainingIgnoreCase(String query);
-  List<RecipeDetails> findByCategoryContainingIgnoreCase(String veg);
-                                                           //veg is the category we want to search
+  List<RecipeDetails> findByCategoryIgnoreCase(String category); //category we want to search
+  List<RecipeDetails>findByOriginIgnoreCase(String origin);
+
 
 
  
