@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springboot_app.Model.Recipe;
+
 //import com.project.springboot_app.Model.Recipe;
 import com.project.springboot_app.Model.RecipeDetails;
 
@@ -28,6 +28,7 @@ public interface RecipeService {
     public List<RecipeDetails> searchRecipes(String query);
     public List<RecipeDetails>getRecipeByCategory(String category);
     public List<RecipeDetails>getRecipeByOrigin(String origin);
+    public List<RecipeDetails>searchRecipesByCategory(String category,String query);
 
    
 }

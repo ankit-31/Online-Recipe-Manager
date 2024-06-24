@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.project.springboot_app.Model.Recipe;
+
 import com.project.springboot_app.Model.RecipeDetails;
 import com.project.springboot_app.repository.RecipeDetailsRepository;
 //import com.project.springboot_app.repository.RecipeRepository;
@@ -18,18 +18,11 @@ import com.project.springboot_app.service.RecipeService;
 @Service
 public class RecipeServiceimpl implements RecipeService {
 
-   // @Autowired
-   // RecipeDetails recipeDetails;
-   // private RecipeRepository recipeRepository;
+   
 
     @Autowired
     public RecipeDetailsRepository recipeDetailsRepository;
-    //  @Override
-    // public Recipe create(Recipe recipe) {
-       
-    //     return recipeRepository.save(recipe);
-    // }
-
+    
     @Override
     public RecipeDetails saveRecipe(MultipartFile image, Integer recipe_id, String recipeName,
                                     String recipe_description, String recipe_preparation,String category,String origin) {
@@ -68,8 +61,11 @@ public class RecipeServiceimpl implements RecipeService {
     }
 
 public List<RecipeDetails> searchRecipes(String query) {
-        // Implement the search logic here. For example:
+        // Implement the search logic here. 
         return recipeDetailsRepository.findByRecipeNameContainingIgnoreCase(query);
+    }
+    public List<RecipeDetails>searchRecipesByCategory(String category,String query){
+        return recipeDetailsRepository.findByCategoryIgnoreCaseAndContainingNameIgnoreCase(category, query);
     }
 
     public RecipeDetails getRecipeById(Integer id) {

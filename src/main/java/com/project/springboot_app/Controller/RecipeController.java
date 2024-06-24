@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.project.springboot_app.Model.Recipe;
+
 //import com.project.springboot_app.Model.Recipe;
 import com.project.springboot_app.Model.RecipeDetails;
 import com.project.springboot_app.service.RecipeService;
@@ -62,7 +62,7 @@ public class RecipeController {
         model.addAttribute("recipe", recipe);
         return "fullrecipe";
     }
-    @GetMapping("/home1")
+    @GetMapping("/home")
     public String home1(Model model){
       List<RecipeDetails> allrecipe=recipeService.getAllRecipe();
       Random randomRecipe = new Random();
@@ -85,7 +85,7 @@ public class RecipeController {
       
       
       model.addAttribute("recipeItems", randomrecipe);
-      return "home1";
+      return "home";
     }
     @GetMapping("/")
     public String home(Model model){
@@ -121,6 +121,16 @@ public class RecipeController {
         model.addAttribute("recipeItems", recipes);
         return "recipelist"; // The name of the HTML template to render
     }
+    @GetMapping("/veg/search")
+    public String searchRecipesByCategory(@RequestParam(name="veg")String category,@RequestParam( name="query") String query, Model model) {
+      System.out.println("heloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+       
+      
+        List<RecipeDetails> recipes = recipeService.searchRecipesByCategory(category.trim(),query.trim());
+        model.addAttribute("recipeItems", recipes);
+        return "recipelist"; // The name of the HTML template to render
+    }
+
    
 
 
