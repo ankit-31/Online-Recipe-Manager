@@ -75,9 +75,9 @@ public class RecipeController {
         j = randomRecipe.nextInt(allrecipe.size());
       }
       int k = randomRecipe.nextInt(allrecipe.size());
-      // while(k == i || k == j){
-      //   k = randomRecipe.nextInt(allrecipe.size());
-      // }
+      while(k == i || k == j){
+        k = randomRecipe.nextInt(allrecipe.size());
+      }
       randomrecipe.add(allrecipe.get(i));
       randomrecipe.add(allrecipe.get(j));
       randomrecipe.add(allrecipe.get(k));
@@ -121,15 +121,15 @@ public class RecipeController {
         model.addAttribute("recipeItems", recipes);
         return "recipelist"; // The name of the HTML template to render
     }
-    @GetMapping("/veg/search")
-    public String searchRecipesByCategory(@RequestParam(name="veg")String category,@RequestParam( name="query") String query, Model model) {
-      System.out.println("heloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+    // @GetMapping("/veg/search")
+    // public String searchRecipesByCategory(@RequestParam(name="veg")String category,@RequestParam( name="query") String query, Model model) {
+    //   System.out.println("heloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");}
        
       
-        List<RecipeDetails> recipes = recipeService.searchRecipesByCategory(category.trim(),query.trim());
-        model.addAttribute("recipeItems", recipes);
-        return "recipelist"; // The name of the HTML template to render
-    }
+    //     List<RecipeDetails> recipes = recipeService.searchRecipesByCategory(category.trim(),query.trim());
+    //     model.addAttribute("recipeItems", recipes);
+    //     return "recipelist"; // The name of the HTML template to render
+    // }
 
    
 

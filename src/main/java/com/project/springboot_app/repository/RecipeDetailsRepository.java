@@ -19,7 +19,7 @@ public interface RecipeDetailsRepository extends JpaRepository<RecipeDetails, In
    List<RecipeDetails>findByRecipeNameContainingIgnoreCase(String query);
   List<RecipeDetails> findByCategoryIgnoreCase(String category); //category we want to search
   List<RecipeDetails>findByOriginIgnoreCase(String origin);
-  List<RecipeDetails>findByCategoryIgnoreCaseAndContainingNameIgnoreCase(String category,String query);
+  // List<RecipeDetails>findByCategoryIgnoreCaseAndContainingNameIgnoreCase(String category,String query);
    
 
 

@@ -64,9 +64,9 @@ public List<RecipeDetails> searchRecipes(String query) {
         // Implement the search logic here. 
         return recipeDetailsRepository.findByRecipeNameContainingIgnoreCase(query);
     }
-    public List<RecipeDetails>searchRecipesByCategory(String category,String query){
-        return recipeDetailsRepository.findByCategoryIgnoreCaseAndContainingNameIgnoreCase(category, query);
-    }
+    // public List<RecipeDetails>searchRecipesByCategory(String category,String query){
+    //     return recipeDetailsRepository.findByCategoryIgnoreCaseAndContainingNameIgnoreCase(category, query);
+    // }
 
     public RecipeDetails getRecipeById(Integer id) {
         return recipeDetailsRepository.findById(id)
